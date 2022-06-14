@@ -27,9 +27,9 @@
       <client-only>
         <vue-final-modal v-model="editmModalWindow" style="cursor: pointer">
           <div class="memo_edit">
-            <!-- 編集ボタンを押したメモのbody(書き出した文章)を子componentsに渡したい。 -->
+            <!-- 編集ボタンを押したメモの文章をedit-additionalに渡したい。 -->
             <edit-additional :memobody.sync="toEditAdditionalComponents"></edit-additional>
-            <!-- 子componetntsから変更されて返ってきた値をeditMemo()で処理したい。 -->
+            <!-- edit-additionalから変更されて返ってきた値をeditMemo()で処理したい。 -->
             <input type="submit" value="変更を登録する" @click.prevent="editMemo()">
           </div>
         </vue-final-modal>
@@ -83,16 +83,12 @@ export default {
 
   methods: {
     // メモの編集
-    async editModalOpen(memo) {
+    editModalOpen(memo) {
       this.editmModalWindow = !this.editmModalWindow;
       this.toEditAdditionalComponents = memo.body;
-      await this.$axios.post("/edit", {id: memo.id, user_id: memo.user_id, body: this.toEditAdditionalComponents})
-      .then((res) => {
-        console.log(res);
-      })
     },
 
-    async editMemo() {
+    editMemo() {
 
     },
 
@@ -167,8 +163,8 @@ export default {
   text-align: right;
 
     button {
-      font-size: 1.5rem;
-      padding-left: 5px;
+      font-size: 1.7rem;
+      padding-left: 2px;
       color: $keycolor;
     }
   }
