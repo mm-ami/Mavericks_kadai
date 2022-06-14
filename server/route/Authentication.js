@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
 
   } catch (error) {
 
-    return res.json({message: '既に登録されているユーザー名です。', status: 401});
+    return res.sendStatus(401);
 
   }
 
@@ -66,6 +66,7 @@ router.get('/user', async (req, res) => {
     return res.json({user});
 
   })
+
 })
 
 module.exports = router;

@@ -17,11 +17,21 @@ export default {
   srcDir: 'src/',
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: [
+    { src: '~/assets/scss/common.scss' }
+  ],
+
+  styleResources: {
+    scss: ['~/assets/scss/_variables.scss'],
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/vee-validate'
+    '@/plugins/vee-validate',
+    {
+      src: '@/plugins/vue-final-modal',
+      mode: 'client'
+    }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,7 +48,13 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/style-resources',
+    'nuxt-fontawesome'
   ],
+
+  fontawesome: {
+    component: 'fa'
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
@@ -49,7 +65,7 @@ export default {
   // Auth Moduleの設定
   auth: {
     redirect: {
-      login: '/login',   // 未ログイン時に認証ルートへアクセスした際のリダイレクトURL
+      login: '/authentication/login',   // 未ログイン時に認証ルートへアクセスした際のリダイレクトURL
       logout: '/',  // ログアウト時のリダイレクトURL
       callback: false,   // Oauth認証等で必要となる コールバックルート
       home: '/',         // ログイン後のリダイレクトURL
@@ -61,6 +77,8 @@ export default {
           user: { url: '/authentication/user', method: 'get', propertyName: false},
           logout: false
         },
+        tokenRequired: true,
+        tokenType: 'bearer'
       }
     }
   },
