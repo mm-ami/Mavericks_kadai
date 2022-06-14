@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
 
   await ConnectionPool.query(sql, [id, userId])
   .then(() => {
-    res.status(200);
+    res.sendStatus(200);
   })
   .catch(() => {
     res.sendStatus(400);

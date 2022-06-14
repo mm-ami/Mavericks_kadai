@@ -28,4 +28,12 @@ export default {
 
 <style lang="scss" scoped>
 
+textarea {
+  resize: none;
+  font-size: 2rem;
+  padding: 10px;
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%);
+  border: none;
+}
+
 </style>

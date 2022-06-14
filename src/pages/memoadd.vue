@@ -40,4 +40,16 @@ export default {
 
 <style lang="scss" scoped>
 
+.add_container {
+  @include transform;
+
+  input {
+    @include input;
+
+    &:hover {
+      @include inputhover;
+    }
+  }
+}
+
 </style>

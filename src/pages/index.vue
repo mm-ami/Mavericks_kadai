@@ -109,4 +109,85 @@ export default {
 
 <style lang="scss" scoped>
 
+.no_login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  background-color: $backcolor;
+  padding: 70px;
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  a {
+    display: block;
+    color: $keycolor;
+    font-size: 1.3rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  h1, a {
+    text-align: center;
+  }
+}
+
+.addicon_container {
+  text-align: center;
+
+  .addicon {
+    font-size: 2rem;
+    padding: 12px;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%);
+    background-color: $backcolor;
+    color: $keycolor;
+  }
+}
+
+.memo {
+  margin: 20px 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+
+  &_list {
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%);
+    padding: 8px;
+    height: 250px;
+    background-color: $backcolor;
+    overflow: scroll;
+  }
+
+  &_button {
+  text-align: right;
+
+    button {
+      font-size: 1.5rem;
+      padding-left: 5px;
+      color: $keycolor;
+    }
+  }
+
+  &_body {
+    font-size: 2rem;
+  }
+
+  &_edit {
+    @include transform;
+
+    input {
+      @include input;
+
+      &:hover {
+        @include inputhover;
+      }
+    }
+  }
+}
+
 </style>

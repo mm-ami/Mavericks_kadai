@@ -25,4 +25,24 @@ export default {
 
 <style lang="scss" scoped>
 
+.error {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: $backcolor;
+  padding: 50px;
+
+  a {
+    margin-top: 20px;
+    display: inline-block;
+    color: $keycolor;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 </style>

@@ -33,4 +33,22 @@ export default {
 
 <style lang="scss" scoped>
 
+.password_form {
+  margin-bottom: 20px;
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .error {
+    color: #fc7e7e;
+  }
+}
+
 </style>
