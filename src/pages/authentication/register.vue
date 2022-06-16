@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import UsernameForm from "~/components/AuthenticationUsernameform.vue";
-import PasswordForm from "~/components/AuthenticationPsswordform.vue";
+import UsernameForm from "~/components/AuthenticationUsernameForm.vue";
+import PasswordForm from "~/components/AuthenticationPsswordForm.vue";
 
 export default {
   name: 'LoginPage',
