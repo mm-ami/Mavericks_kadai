@@ -40,6 +40,8 @@ export default {
     EditAdditional,
   },
 
+  middleware: 'auth',
+
   data() {
     return {
       editmModalWindow: false,
