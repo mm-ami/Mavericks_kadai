@@ -1,9 +1,7 @@
 <template>
-  <section>
-    <div class="no_login">
-      <h1>Memo</h1>
-      <nuxt-link to="authentication/login">ログイン画面へ</nuxt-link>
-    </div>
+  <section class="no_login">
+    <h1>Memo</h1>
+    <nuxt-link to="authentication/login">ログイン画面へ</nuxt-link>
   </section>
 </template>
 
@@ -11,10 +9,9 @@
 export default {
   name: 'IndexPage',
 
+  // ログインしているかどうか ログイン済みなら/loginAfterへ遷移
   mounted() {
-    if(this.$auth.loggedIn) {
-      this.$router.push("/loginAfter");
-    }
+    if(this.$auth.loggedIn) this.$router.push("/loginAfter");
   }
 }
 </script>

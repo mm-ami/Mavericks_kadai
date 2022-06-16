@@ -20,7 +20,7 @@ export default {
   computed: {
     setUsername: {
       get() {
-        return this.username;
+        return this.username
       },
       set(inputUsername) {
         return this.$emit('update:username', inputUsername);

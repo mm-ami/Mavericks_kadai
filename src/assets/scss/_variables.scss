@@ -3,6 +3,18 @@ $keycolor: #98f3f8;
 $basecolor: #000;
 $errorcolor: #fc7e7e;
 
+@mixin tab {
+  @media screen and (max-width: (1000px)) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media screen and (max-width: (680px)) {
+    @content;
+  }
+}
+
 @mixin transform {
   position: absolute;
   top: 50%;

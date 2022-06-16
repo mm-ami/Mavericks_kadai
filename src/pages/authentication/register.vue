@@ -45,9 +45,9 @@ export default {
       await this.$axios.post('/authentication/register', this.userInformation)
       .then((res) => {
 
-        if(res.data.status === 401) return (this.errorMessage = res.data.message)
+        if(res.data.status === 401) return (this.errorMessage = res.data.message);
 
-        if(res.status === 200) this.$auth.loginWith('local', {data: this.userInformation})
+        if(res.status === 200) this.$auth.loginWith('local', {data: this.userInformation});
 
       })
     }

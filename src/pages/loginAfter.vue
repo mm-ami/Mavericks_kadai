@@ -1,31 +1,31 @@
 <template>
   <section>
-      <div class="addicon_container">
-        <!-- 追加ボタン -->
-        <nuxt-link to="addmemo" class="addicon"><fa :icon="faPlus" /></nuxt-link>
-      </div>
+    <div class="addicon_container">
+      <!-- 追加ボタン -->
+      <nuxt-link to="addMemo" class="addicon"><fa :icon="faPlus" /></nuxt-link>
+    </div>
 
-      <div class="memo">
-        <div v-for="memo in memoList" :key="memo.id" class="memo_list">
-          <div class="memo_button">
-            <!-- 編集ボタン -->
-            <button @click="editModalOpen(memo)"><fa :icon="faPenToSquare" /></button>
-            <!-- ゴミ箱ボタン -->
-            <button @click="deleteMemo(memo)"><fa :icon="faTrash" /></button>
-          </div>
-          <div class="memo_body">{{memo.body}}</div>
+    <div class="memo">
+      <div v-for="memo in memoList" :key="memo.id" class="memo_list">
+        <div class="memo_button">
+          <!-- 編集ボタン -->
+          <button @click="editModalOpen(memo)"><fa :icon="faPenToSquare" /></button>
+          <!-- 削除ボタン -->
+          <button @click="deleteMemo(memo)"><fa :icon="faTrash" /></button>
         </div>
+        <div class="memo_body">{{memo.body}}</div>
       </div>
+    </div>
 
-      <!-- 編集ボタンを押したら表示されるmodalウィンドウ  -->
-      <client-only>
-        <vue-final-modal v-model="editmModalWindow" style="cursor: pointer">
-          <div class="memo_edit">
-            <edit-additional :memobody.sync="toEditAdditionalComponents"></edit-additional>
-            <input type="submit" value="変更を登録する" @click.prevent="editMemo()">
-          </div>
-        </vue-final-modal>
-      </client-only>
+    <!-- 編集ボタンを押したら表示されるモーダルウィンドウ  -->
+    <client-only>
+      <vue-final-modal v-model="editmModalWindow" style="cursor: pointer">
+        <div class="memo_edit">
+          <edit-additional :memobody.sync="toEditAdditionalComponents"></edit-additional>
+          <input type="submit" value="変更を登録する" @click.prevent="editMemo()">
+        </div>
+      </vue-final-modal>
+    </client-only>
   </section>
 </template>
 
@@ -39,8 +39,6 @@ export default {
   components: {
     EditAdditional,
   },
-
-  middleware: 'auth',
 
   data() {
     return {
@@ -119,6 +117,14 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 30px;
+
+  @include tab {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include phone {
+    grid-template-columns: 1fr;
+  }
 
   &_list {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%);

@@ -1,5 +1,5 @@
 <template>
-  <textarea name="memo" cols="50" rows="15" :value="memobody" @input="$emit('update:memobody', $event.target.value)"></textarea>
+  <textarea name="memo" :value="memobody" @input="$emit('update:memobody', $event.target.value)"></textarea>
 </template>
 
 <script>
@@ -11,18 +11,7 @@ export default {
       type: String,
       default: ''
     }
-  },
-
-  // computed: {
-  //   setMemobody: {
-  //     get () {
-  //       return this.memobody;
-  //     },
-  //     set (inputMemoBody) {
-  //       return this.$emit('update:memobody', inputMemoBody) ;
-  //     }
-  //   }
-  // }
+  }
 }
 </script>
 
@@ -34,6 +23,13 @@ textarea {
   padding: 10px;
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%);
   border: none;
+  height: 500px;
+  width: 550px;
+
+  @include phone {
+    height: 300px;
+    width: 350px;
+  }
 }
 
 </style>

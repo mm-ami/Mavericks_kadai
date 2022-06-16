@@ -34,6 +34,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
 
   try {
+
     const username = req.body.username;
     const password = req.body.password;
   
@@ -44,10 +45,10 @@ router.post('/login', async (req, res) => {
     // 入力されたパスワードとハッシュ化されたパスワードを照合
     await bcrypt.compare(password, usernameSelect[0].password);
 
-    const payload = { id: usernameSelect[0].id }
+    const payload = { id: usernameSelect[0].id };
     const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1d"});
 
-    // router.get('/user')の方へtokenが渡される
+    // tokenを発行後は下の/userに自動的にアクセスする
     return res.json({token});
 
   } catch (error) {
@@ -55,6 +56,7 @@ router.post('/login', async (req, res) => {
     return res.sendStatus(401);
 
   }
+
 })
 
 router.get('/user', async (req, res) => {

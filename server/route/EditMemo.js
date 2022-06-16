@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const ConnectionPool = require('../db/connection');
 
+// メモの編集
 router.post('/', async (req, res) => {
 
   const id = req.body.id;
