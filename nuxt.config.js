@@ -1,5 +1,4 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'memo',
     htmlAttrs: {
@@ -16,7 +15,6 @@ export default {
 
   srcDir: 'src/',
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     { src: '~/assets/scss/common.scss' }
   ],
@@ -25,7 +23,6 @@ export default {
     scss: ['~/assets/scss/_variables.scss'],
   },
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '@/plugins/vee-validate',
     {
@@ -34,18 +31,13 @@ export default {
     }
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/style-resources',
@@ -56,9 +48,7 @@ export default {
     component: 'fa'
   },
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: '/server',
   },
 
@@ -83,7 +73,6 @@ export default {
     }
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vee-validate'],
     extend(config, ctx) {},
@@ -93,6 +82,5 @@ export default {
   // expressとの接続
   serverMiddleware: [
     {path: '/server', handler: '../server/index.js'}
-  ],
-  // serverMiddleware: ['~/server'],
+  ]
 }

@@ -1,26 +1,21 @@
 const router = require('express').Router();
-// const ConnectionPool = require('../db/connection');
+const ConnectionPool = require('../db/connection');
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
 
+  const id = req.body.id;
+  const userId = req.body.userId;
+  const memoBody = req.body.body;
 
-  // try {
+  const sql = 'UPDATE memo SET body = ? WHERE id = ? AND user_id = ?';
 
-  //   const userId = req.body.userId;
-  //   const memoBody = req.body.memobody;
-  
-  //   const sql = 'UPDATE memo SET ? WHERE user_id = ?';
-  //   const insert = [{body: memoBody}, userId]
-  
-  //   await ConnectionPool.query(sql, insert);
-
-  //   return res.sendStatus(200);
-
-  // } catch (error) {
-    
-  //   return res.sendStatus(400);
-
-  // }
+  await ConnectionPool.query(sql, [memoBody, id, userId])
+  .then(() => {
+    return res.sendStatus(200);
+  })
+  .catch(() => {
+    return res.sendStatus(400);
+  })
 
 })
 

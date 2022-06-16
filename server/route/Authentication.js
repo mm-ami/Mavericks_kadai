@@ -15,6 +15,7 @@ router.post('/register', async (req, res) => {
   
     const sql = 'INSERT INTO memo_users SET ?';
   
+    // パスワードをハッシュ化
     const hashedPassword = await bcrypt.hash(password, saltRounds);
   
     await ConnectionPool.query(sql, {name: username, password: hashedPassword});
@@ -31,6 +32,7 @@ router.post('/register', async (req, res) => {
 
 // ログイン
 router.post('/login', async (req, res) => {
+
   try {
     const username = req.body.username;
     const password = req.body.password;
@@ -39,11 +41,13 @@ router.post('/login', async (req, res) => {
 
     const usernameSelect = await ConnectionPool.query(sql, {name: username});
 
+    // 入力されたパスワードとハッシュ化されたパスワードを照合
     await bcrypt.compare(password, usernameSelect[0].password);
 
     const payload = { id: usernameSelect[0].id }
     const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: "1d"});
 
+    // router.get('/user')の方へtokenが渡される
     return res.json({token});
 
   } catch (error) {
@@ -54,7 +58,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.get('/user', async (req, res) => {
-
+  
   const token = await req.headers.authorization.split(" ")[1];
 
   if(!token) return res.sendStatus(401);

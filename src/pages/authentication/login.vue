@@ -4,6 +4,7 @@
 
       <h2 class="login_register_title">ログイン</h2>
       <h4>{{ errorMessage }}</h4>
+      
       <username-form :username.sync="userInformation.username"></username-form>
       <password-form :password.sync="userInformation.password"></password-form>
 
@@ -17,8 +18,8 @@
 </template>
 
 <script>
-import UsernameForm from "../../components/AuthenticationUsernameform.vue";
-import PasswordForm from "../../components/AuthenticationPsswordform.vue";
+import UsernameForm from "~/components/AuthenticationUsernameform.vue";
+import PasswordForm from "~/components/AuthenticationPsswordform.vue";
 
 export default {
   name: 'LoginPage',
@@ -64,7 +65,7 @@ export default {
   h4 {
     text-align: center;
     margin-bottom: 10px;
-    color: #fc7e7e;
+    color: $errorcolor;
   }
 
   &_title {

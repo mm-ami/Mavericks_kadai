@@ -1,5 +1,5 @@
 <template>
-  <textarea v-model="setMemobody" name="memo" cols="50" rows="15"></textarea>
+  <textarea name="memo" cols="50" rows="15" :value="memobody" @input="$emit('update:memobody', $event.target.value)"></textarea>
 </template>
 
 <script>
@@ -13,16 +13,16 @@ export default {
     }
   },
 
-  computed: {
-    setMemobody: {
-      get () {
-        return this.memobody;
-      },
-      set (inputMemoBody) {
-        return this.$emit('update:memobody', inputMemoBody) ;
-      }
-    }
-  }
+  // computed: {
+  //   setMemobody: {
+  //     get () {
+  //       return this.memobody;
+  //     },
+  //     set (inputMemoBody) {
+  //       return this.$emit('update:memobody', inputMemoBody) ;
+  //     }
+  //   }
+  // }
 }
 </script>
 

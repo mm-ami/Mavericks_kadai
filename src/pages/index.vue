@@ -1,6 +1,5 @@
 <template>
   <section>
-
     <div v-if="!$auth.loggedIn" class="no_login">
       <h1>Memo</h1>
       <nuxt-link to="authentication/login">ログイン画面へ</nuxt-link>
@@ -8,7 +7,8 @@
 
     <div v-else>
       <div class="addicon_container">
-        <nuxt-link to="memoadd" class="addicon"><fa :icon="faPlus" /></nuxt-link>
+        <!-- 追加ボタン -->
+        <nuxt-link to="addmemo" class="addicon"><fa :icon="faPlus" /></nuxt-link>
       </div>
 
       <div class="memo">
@@ -27,15 +27,12 @@
       <client-only>
         <vue-final-modal v-model="editmModalWindow" style="cursor: pointer">
           <div class="memo_edit">
-            <!-- 編集ボタンを押したメモの文章をedit-additionalに渡したい。 -->
             <edit-additional :memobody.sync="toEditAdditionalComponents"></edit-additional>
-            <!-- edit-additionalから変更されて返ってきた値をeditMemo()で処理したい。 -->
             <input type="submit" value="変更を登録する" @click.prevent="editMemo()">
           </div>
         </vue-final-modal>
       </client-only>
     </div>
-
   </section>
 </template>
 
@@ -55,6 +52,7 @@ export default {
       editmModalWindow: false,
       memoList: [],
       toEditAdditionalComponents: '',
+      memoId: ''
     }
   },
 
@@ -82,14 +80,19 @@ export default {
   },
 
   methods: {
-    // メモの編集
+    // vue-final-modalを開き、クリックされたメモの文章とidをdataに格納
     editModalOpen(memo) {
       this.editmModalWindow = !this.editmModalWindow;
       this.toEditAdditionalComponents = memo.body;
+      this.memoId = memo.id;
     },
 
-    editMemo() {
-
+    // メモの編集
+    async editMemo() {
+      await this.$axios.post('/edit', {id: this.memoId, userId: this.$auth.user.user.id, body: this.toEditAdditionalComponents})
+      .then((res) => {
+        location.reload();
+      })
     },
 
     // メモの削除

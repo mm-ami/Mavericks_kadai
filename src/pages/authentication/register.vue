@@ -4,6 +4,7 @@
 
       <h2 class="login_register_title">新規作成</h2>
       <h4>{{ errorMessage }}</h4>
+
       <username-form :username.sync="userInformation.username"></username-form>
       <password-form :password.sync="userInformation.password"></password-form>
 
@@ -17,8 +18,8 @@
 </template>
 
 <script>
-import UsernameForm from "../../components/AuthenticationUsernameform.vue";
-import PasswordForm from "../../components/AuthenticationPsswordform.vue";
+import UsernameForm from "~/components/AuthenticationUsernameform.vue";
+import PasswordForm from "~/components/AuthenticationPsswordform.vue";
 
 export default {
   name: 'LoginPage',
@@ -39,6 +40,7 @@ export default {
   },
 
   methods: {
+    // 新規作成処理
     async registerBtn() {
       await this.$axios.post('/authentication/register', this.userInformation)
       .then((res) => {

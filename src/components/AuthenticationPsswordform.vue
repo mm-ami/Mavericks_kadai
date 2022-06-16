@@ -47,7 +47,7 @@ export default {
   }
 
   .error {
-    color: #fc7e7e;
+    color: $errorcolor;
   }
 }
 
